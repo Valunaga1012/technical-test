@@ -1,20 +1,42 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" no-border>
   <ion-toolbar>
     <ion-title>
-      Blank
+      Competitions
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-item-divider>
+  <ion-col size="10">
+    <ion-searchbar mode="ios"
+                 placeholder="Filter Season" 
+                 inputmode="search" type="search"  
+                 [debounce]="250" showCancelButton="never"
+                 (ionChange)="searchChange( $event )">
+  </ion-searchbar>
+  </ion-col>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+ <ion-col size="2">
+  <ion-icon side="start" name="moon" [color]="darkMode? 'primary' : ''"></ion-icon>
+  <ion-toggle [ngModel]="darkMode" (ionChange)="changeMode()"></ion-toggle>
+ </ion-col>
+  
+</ion-item-divider>
+
+<ion-content [fullscreen]="true" *ngIf="competitions" >
+
+    <ion-card *ngFor="let competition of competitions | filterSeason:searchText" (click)="goToDetail(competition.id)"class="animate__animated animate__fadeIn animate__fast" >
+      <ion-item lines="none">
+        <ion-label>
+          <h2>{{competition.name}}</h2>
+          <p>{{competition.area.name}}</p>
+        </ion-label>
+        <ion-avatar slot="start" class="avatar" >
+          <ion-img *ngIf="competition.emblemUrl" [src]="competition.emblemUrl"></ion-img>
+          <ion-img *ngIf="!competition.emblemUrl" src="./assets/images/shield.jpg"></ion-img>
+        </ion-avatar>
+        <ion-label slot="end" class="ion-text-end"><small>{{competition.currentSeason?.startDate | date}}</small></ion-label>
+      </ion-item>
+    </ion-card>
+
 </ion-content>

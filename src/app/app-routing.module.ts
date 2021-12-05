@@ -11,6 +11,16 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'teams',
+    loadChildren: () => import('./pages/teams/teams.module').then( m => m.TeamsPageModule)
+  },
+  {
+    path: 'team-description',
+    loadChildren: () => import('./pages/team-description/team-description.module').then( m => m.TeamDescriptionPageModule)
+  },
+
+
 ];
 
 @NgModule({

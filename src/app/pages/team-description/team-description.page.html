@@ -1,0 +1,165 @@
+<app-header *ngIf="team" [title]="team.name" route="/teams"></app-header>
+
+<ion-item-divider>
+  <ion-segment class="segment" value="General" mode="md" color="primary"
+    (ionChange)="segmentChanged($event)">
+    <ion-segment-button mode="md" [value]="category.segment" *ngFor="let category of categories">
+      <ion-label> <strong>{{category.segment}}</strong> </ion-label>
+    </ion-segment-button>
+  </ion-segment>
+</ion-item-divider>
+
+<ion-content *ngIf="team">
+
+  <ion-grid *ngIf="segment">
+    <ion-row>
+      <ion-col class="ion-margin-top">
+        <ion-title>Information</ion-title>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <ion-card-content>
+            <ion-row>          
+            <ion-col size="10">
+              <h2>Name</h2>
+              <ion-label>{{team.name}}</ion-label>
+            </ion-col>
+            <ion-col size="2">
+              <ion-img class="shieldImage" side="end" [src]="team.crestUrl"></ion-img>
+            </ion-col>
+          </ion-row>
+          </ion-card-content>
+        </ion-card>
+        <ion-card>
+          <ion-card-content>
+            <h2>Stadium</h2>
+            <ion-label>{{team.venue}}</ion-label>
+          </ion-card-content>
+        </ion-card>
+        <ion-card>
+          <ion-card-content>
+            <h2>Club colors</h2>
+            <ion-label>{{team.clubColors}}</ion-label>
+          </ion-card-content>
+        </ion-card>
+        <ion-card>
+          <ion-card-content>
+            <h2>Founded</h2>
+            <ion-label>{{team.founded}}</ion-label>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="ion-margin-top">
+        <ion-title>Competitions</ion-title>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="11">
+        <ion-card>
+          <ion-card-content *ngFor="let competition of team.activeCompetitions">
+            <ion-icon slot="start" name="trophy" class="ion-margin-end"></ion-icon>
+            <ion-label>{{competition.name}}</ion-label>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col class="ion-margin-top">
+        <ion-title>Contact</ion-title>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <ion-card-content>
+            <ion-row>
+              <ion-col>
+                <ion-icon name="pin" color="primary"></ion-icon>
+              </ion-col>
+              <ion-col size="10"><h2>{{team.address}}</h2></ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+        <ion-card>
+          <ion-card-content>
+            <ion-row>
+              <ion-col>
+                <ion-icon name="call" color="primary"></ion-icon>
+              </ion-col>
+              <ion-col size="10"><h2>{{team.phone}}</h2></ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+        <ion-card>
+          <ion-card-content>
+            <ion-row>
+              <ion-col>
+                <ion-icon name="globe" color="primary"></ion-icon>
+              </ion-col>
+              <ion-col size="10"><h2>{{team.website}}</h2></ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+        <ion-card *ngIf="team.email">
+          <ion-card-content>
+            <ion-row>
+              <ion-col>
+                <ion-icon name="mail" color="primary"></ion-icon>
+              </ion-col>
+              <ion-col size="10"><h2>{{team.email}}</h2></ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="!segment">
+    <ion-card *ngFor="let player of team.squad">
+      <ion-card-header>
+        <ion-card-title>{{player.name}}</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+
+        <ion-row *ngIf="player.nationality">
+          <ion-col>
+            <ion-img class="icon" src="./assets/icon/flag.svg"></ion-img>
+          </ion-col>
+          <ion-col size="10"><h2>{{player.nationality}}</h2></ion-col>
+        </ion-row>
+
+        <ion-row *ngIf="player.position">
+          <ion-col>
+            <ion-img class="icon" src="./assets/icon/pin.svg"></ion-img>
+          </ion-col>
+          <ion-col size="10"><h2>{{player.position}}</h2></ion-col>
+        </ion-row>
+
+        <ion-row *ngIf="player.role">
+          <ion-col>
+            <ion-img class="icon" src="./assets/icon/shirt.svg"></ion-img>
+          </ion-col>
+          <ion-col size="10"><h2>{{player.role | titlecase}}</h2></ion-col>
+        </ion-row>
+
+        <ion-row *ngIf="player.dateOfBirth">
+          <ion-col>
+            <ion-img class="icon" src="./assets/icon/birth.svg"></ion-img>
+          </ion-col>
+          <ion-col size="10"><h2>{{player.dateOfBirth | date}}</h2></ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </ion-grid>
+
+</ion-content>
