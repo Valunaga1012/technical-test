@@ -14,7 +14,7 @@ export class InterceptorService {
 
     let request = req;
     request = req.clone({
-      setHeaders: { 'X-Auth-Token': environment.apiKey }
+      setHeaders: {'X-Auth-Token': environment.Token }
     });
     return next.handle(request);
   }

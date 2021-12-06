@@ -4,9 +4,10 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { TeamDescriptionPageRoutingModule } from './team-description-routing.module';
+import { TeamInfoPageRoutingModule } from './team-info-routing.module';
 
-import { TeamDescriptionPage } from './team-description.page';
+import { TeamInfoPage } from './team-info.page';
+import { PlayersComponent } from './players/players.component';
 import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
@@ -14,9 +15,9 @@ import { ComponentsModule } from 'src/app/components/components.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    TeamDescriptionPageRoutingModule,
+    TeamInfoPageRoutingModule,
     ComponentsModule
   ],
-  declarations: [TeamDescriptionPage]
+  declarations: [TeamInfoPage, PlayersComponent]
 })
-export class TeamDescriptionPageModule {}
+export class TeamInfoPageModule {}

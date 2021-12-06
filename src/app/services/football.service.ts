@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Competitions } from '../models/competicion';
 import { Teams } from '../models/team';
 import { TeamDescription } from '../models/teamDescription';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -13,21 +14,16 @@ export class FootballService {
 
   constructor(private http: HttpClient) { }
 
-  private executeQuery<T>(query: string){
-    query = environment.url + query;
-    return this.http.get<T>(query);
+  public getCompetitions(): Observable<Competitions>{
+    return this.http.get<Competitions>(`${environment.API}/competitions`);
   }
 
-  getCompetitions(){
-    return this.executeQuery<Competitions>(`/competitions`);
+  public getTeams(id: string): Observable<Teams>{
+    return  this.http.get<Teams>(`${environment.API}/competitions/${id}/teams`);
   }
 
-  getTeams(id: string){
-    return this.executeQuery<Teams>(`/competitions/${id}/teams`);
-  }
-
-  getTeamDescription(id:string){
-    return this.executeQuery<TeamDescription>(`/teams/${id}`);
+  public getTeamDescription(id:string): Observable<TeamDescription>{
+    return  this.http.get<TeamDescription>(`${environment.API}/teams/${id}`);
   }
 
 }

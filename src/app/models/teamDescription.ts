@@ -1,7 +1,7 @@
 export interface TeamDescription {
   id: number;
   area: Area;
-  activeCompetitions: ActiveCompetition[];
+  activeCompetitions: Array<ActiveCompetition>;
   name: string;
   shortName: string;
   tla: string;
@@ -13,7 +13,7 @@ export interface TeamDescription {
   founded: number;
   clubColors: string;
   venue: string;
-  squad: Squad[];
+  squad: Array<Squad>;
   lastUpdated: string;
 }
 

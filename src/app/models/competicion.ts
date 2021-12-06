@@ -1,9 +1,8 @@
 export interface Competitions {
   count: number;
-  filters: Filters;
-  competitions: Competition[];
+  filters: Array<any>;
+  competitions: Array<Competition>;
 }
-
 export interface Competition {
   id: number;
   area: Area;
@@ -15,15 +14,13 @@ export interface Competition {
   numberOfAvailableSeasons: number;
   lastUpdated: string;
 }
-
 interface CurrentSeason {
   id: number;
   startDate: string;
   endDate: string;
   currentMatchday?: number;
-  winner?: Winner;
+  winner?: Array<Winner>;
 }
-
 interface Winner {
   id: number;
   name: string;
@@ -31,13 +28,9 @@ interface Winner {
   tla?: string;
   crestUrl?: string;
 }
-
 interface Area {
   id: number;
   name: string;
   countryCode: string;
   ensignUrl?: string;
-}
-
-interface Filters {
 }

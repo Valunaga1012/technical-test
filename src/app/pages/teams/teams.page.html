@@ -1,25 +1,23 @@
 
 <app-header title="{{competition.name}}" route="/"></app-header>
 
-<ion-content>
-
-  <ion-card *ngIf="errorMessaje">
+<ion-content >
+  <h1 class="ion-text-center">Teams</h1>
+  <div class="wrapper">
+    <ion-card *ngIf="errorMessaje">
+      <ion-card-header>
+        <ion-card-title>{{errorMessaje}}</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+  <ion-card *ngFor="let team of teams" mode="ios" (click)="goToDescriptionTeam(team.id)">
     <ion-card-header>
-      <ion-card-title>{{errorMessaje}}</ion-card-title>
+      <div class="img-header">
+        <ion-img  [src]="team.crestUrl =='' ? defaulImg: team.crestUrl ? team.crestUrl:defaulImg "></ion-img>
+      </div>
     </ion-card-header>
+    <ion-card-content color="primary" class="color-content ion-text-center">
+      <h2 class="ion-padding-top">{{team.name}}</h2>
+    </ion-card-content>
   </ion-card>
-
-  <ion-list *ngIf="!errorMessaje">
-
-    <ion-item detail lines="none" *ngFor="let team of teams" (click)="goToDescriptionTeam(team.id)" class="animate__animated animate__fadeIn animate__slow">
-      
-      <ion-thumbnail slot="start">
-        <ion-img *ngIf="team.crestUrl" [src]="team.crestUrl"></ion-img>
-        <ion-img *ngIf="!team.crestUrl" src="./assets/images/shield.jpg"></ion-img>
-      </ion-thumbnail>
-      <h2>{{team.name}}</h2>
-    </ion-item>
-
-  </ion-list>
-
+  </div>
 </ion-content>

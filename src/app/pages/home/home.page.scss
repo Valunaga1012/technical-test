@@ -1,0 +1,24 @@
+.ion-avatar{
+  width: 25px;
+  height: 25px;
+}
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+.wrapper > ion-card {
+  flex: 1 1 400px;
+}
+
+ion-card{
+  height: 100px;
+}
+
+.card{
+  padding: 20px;
+}
+
+h1{
+  text-align: center;
+}

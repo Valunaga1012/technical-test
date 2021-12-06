@@ -1,14 +1,13 @@
 export interface Teams {
   count: number;
-  filters: Filters;
-  competition: TCompetition;
+  filters: Array<any>;
+  competition: Array<TCompetition>;
   season: Season;
-  teams: Team[];
+  teams: Array<Team>;
 }
-
 export interface Team {
   id: number;
-  area: Area;
+  area: Array<Area>;
   name: string;
   shortName: string;
   tla: string;
@@ -22,7 +21,6 @@ export interface Team {
   venue: string;
   lastUpdated: string;
 }
-
 interface Season {
   id: number;
   startDate: string;
@@ -30,20 +28,15 @@ interface Season {
   currentMatchday: number;
   winner?: any;
 }
-
 export interface TCompetition {
   id: number;
-  area: Area;
+  area: Array<Area>;
   name: string;
   code: string;
   plan: string;
   lastUpdated: string;
 }
-
 interface Area {
   id: number;
   name: string;
-}
-
-interface Filters {
 }

@@ -1,0 +1,19 @@
+<div class="content">
+  <div class="wrapper">
+    <ion-card *ngFor="let player of dataPlayers" mode="ios">
+      <ion-card-header>
+        <div class="img-header">
+          <ion-img  [src]="'./assets/images/default_person.png'"></ion-img>
+        </div>
+      </ion-card-header>
+    
+      <ion-card-content color="primary" class="color-content ion-text-center">
+        <h1 class="ion-padding-top">{{player.name}}</h1>
+        <div class="info-player">
+          <h3 class="ion-text-start">{{player.nationality}}<ion-icon name="flag"color="primary"></ion-icon></h3>
+        <h3>{{player.position}}</h3>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</div>

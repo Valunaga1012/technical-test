@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { of, Subscription } from 'rxjs';
 import {catchError , map} from 'rxjs/internal/operators';
 import { TCompetition, Team } from 'src/app/models/team';
@@ -18,24 +18,26 @@ export class TeamsPage {
   public teams: Team[] = [];
   public competition: TCompetition | any = {name: ''};
   public errorMessaje: string;
+  public defaulImg: string = './assets/images/default-image.png'
 
   constructor(
     private footballService: FootballService,
     private navigation: Router,
-    private localSotrage: LocalStorageService) { }
+    private localSotrage: LocalStorageService,
+    private activateRouter: ActivatedRoute) { }
  
 
   ionViewWillEnter(){
-    this.loadResources();
+    this.localSotrage.create('idCompetition', this.activateRouter.snapshot.params.id);
+    this.loadResources(this.activateRouter.snapshot.params.id);
   }
 
-  loadResources(){
-    this.idCompetition = this.localSotrage.getItem('idComp');
-    this.subscription$ = this.footballService.getTeams(this.idCompetition)
+  private loadResources(id: string): void{
+    this.subscription$ = this.footballService.getTeams(id)
     .pipe(
       map(res => {
         this.teams = res.teams; 
-        this.competition = res.competition
+        this.competition = res.competition;        
       }),
       catchError(err => {
           this.errorMessaje = err.error.message;
@@ -44,9 +46,9 @@ export class TeamsPage {
     ).subscribe();
     }
 
-    goToDescriptionTeam(id:number){
+    public goToDescriptionTeam(id:number): void{
       this.localSotrage.create('idTeam', id);
-      this.navigation.navigate(['/team-description']);
+      this.navigation.navigate(['/team-info']);
     }
 
     ionViewDidLeave(){

@@ -1,0 +1,72 @@
+<app-header *ngIf="team" [title]="team.name" route="/teams/{{idCompetition}}"></app-header>
+
+<ion-item-divider>
+  <ion-segment class="segment" value="General" mode="md" color="primary"
+    (ionChange)="segmentChanged($event)">
+    <ion-segment-button mode="md" [value]="category.segment" *ngFor="let category of categories">
+      <ion-label> <strong>{{category.segment}}</strong> </ion-label>
+    </ion-segment-button>
+  </ion-segment>
+</ion-item-divider>
+
+<ion-content *ngIf="team" class="ion-padding">
+  <div *ngIf="tab">
+    <div class="ion-text-center ion-padding-top">
+      <ion-img class="shieldImage" [src]="team.crestUrl ? team.crestUrl: defaultImg"></ion-img>
+      <h1>{{team.name}}</h1>
+    </div>
+    <div class="wrapper">
+      <ion-card>
+        <ion-card-content>
+          <h2>{{team.venue}}</h2>
+          <ion-label>Stadium</ion-label>
+        </ion-card-content>
+      </ion-card>
+      <ion-card>
+        <ion-card-content>
+          <h2>{{team.clubColors}}</h2>
+          <ion-label>Club colors</ion-label>
+        </ion-card-content>
+      </ion-card>
+      <ion-card>
+        <ion-card-content>
+            <h2>{{team.founded}}</h2>
+            <ion-label>Founded</ion-label>
+        </ion-card-content>
+      </ion-card>
+      <ion-card>
+        <ion-card-content>
+          <h2>{{team.squad.length}}</h2>
+          <ion-label>Squad</ion-label>
+        </ion-card-content>
+      </ion-card> 
+  </div>
+  <h2 class="ion-margin-start">Competitions</h2>
+    <ion-chip *ngFor="let competition of team.activeCompetitions">
+      <ion-icon slot="start" name="trophy" class="ion-margin-end"></ion-icon>
+      <ion-label>{{competition.name}}</ion-label>
+    </ion-chip>
+  
+  <ion-list>
+    <ion-item>
+      <ion-icon name="pin" color="primary"></ion-icon>
+      <ion-label>{{team.address}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="call" color="primary"></ion-icon>
+      <ion-label>{{team.phone}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="globe" color="primary"></ion-icon>
+      <ion-label>{{team.website}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="mail" color="primary"></ion-icon>
+      <ion-label>{{team.email}}</ion-label>
+    </ion-item>
+  </ion-list>
+
+  </div>
+    
+  <app-players *ngIf="!tab" [dataPlayers]="team.squad"></app-players>
+</ion-content>

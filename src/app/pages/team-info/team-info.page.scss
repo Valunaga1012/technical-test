@@ -1,0 +1,40 @@
+
+ion-button{
+  --border-color: none;
+  --border-width: 0px !important;
+  position: absolute;
+  top: 10px;
+  left: -10px;
+}
+
+.shieldImage{
+  width: 110px;
+  margin: 0 auto;
+  margin-top: 40px;
+}
+
+ion-icon{
+  font-size: 25px;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.icon{
+  width: 20px;
+}
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  }
+  .wrapper > ion-card {
+    flex: 1 1 447px;
+ 	}
+
+.color-footer{
+  --background:#141414;
+}
+
+ion-text{
+	margin-left: 20px;
+}
