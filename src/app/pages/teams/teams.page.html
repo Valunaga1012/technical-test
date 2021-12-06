@@ -1,0 +1,23 @@
+
+<app-header title="{{competition.name}}" route="/"></app-header>
+
+<ion-content >
+  <h1 class="ion-text-center">Teams</h1>
+  <div class="wrapper">
+    <ion-card *ngIf="errorMessaje">
+      <ion-card-header>
+        <ion-card-title>{{errorMessaje}}</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+  <ion-card *ngFor="let team of teams" mode="ios" (click)="goToDescriptionTeam(team.id)">
+    <ion-card-header>
+      <div class="img-header">
+        <ion-img  [src]="team.crestUrl =='' ? defaulImg: team.crestUrl ? team.crestUrl:defaulImg "></ion-img>
+      </div>
+    </ion-card-header>
+    <ion-card-content color="primary" class="color-content ion-text-center">
+      <h2 class="ion-padding-top">{{team.name}}</h2>
+    </ion-card-content>
+  </ion-card>
+  </div>
+</ion-content>

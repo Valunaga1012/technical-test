@@ -1,0 +1,30 @@
+<ion-header [translucent]="true" no-border>
+    <ion-item-divider>
+      <ion-searchbar mode="ios"
+        placeholder="Filter Season" 
+        inputmode="search" type="search"  
+        [debounce]="250" showCancelButton="never"
+        (ionChange)="searchChange( $event )">
+    </ion-searchbar>     
+    </ion-item-divider>
+</ion-header>
+<ion-content [fullscreen]="true" *ngIf="competitions">
+  <h1>Competitions</h1>
+  <div class="wrapper">
+   <ion-card *ngFor="let competition of competitions | filterSeason:searchText" (click)="goToDetail(competition.id)"class="animate__animated animate__fadeIn animate__fast" >
+    <div class="card">
+      <ion-item lines="none">
+        <ion-avatar slot="start" class="" >
+          <ion-img [src]="competition.emblemUrl ? competition.emblemUrl : competition.area.ensignUrl ? competition.area.ensignUrl :  './assets/images/default-image.png' "></ion-img>
+        </ion-avatar>
+        <ion-label>
+          <h2>{{competition.name}}</h2>
+          <p>{{competition.area.name}}</p>
+        </ion-label>
+        <ion-label slot="end" class="ion-text-end"><small>{{competition.currentSeason?.startDate | date}}</small></ion-label>
+      </ion-item>
+    </div>
+    </ion-card>
+  </div>
+</ion-content>
+

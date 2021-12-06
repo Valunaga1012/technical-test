@@ -1,0 +1,25 @@
+.wrapper {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .wrapper > ion-card {
+    flex: 1 1 200px;
+  }
+
+  ion-card-header{
+      background: white;
+  }
+
+  h1{
+      text-align: start;
+  }
+
+  h3{
+    display: inline;
+  }
+
+.info-player{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
