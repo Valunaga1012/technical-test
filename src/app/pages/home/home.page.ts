@@ -28,7 +28,6 @@ export class HomePage{
   private getCompetitions(): void {
     this.subscription$ = this.footballService.getCompetitions().subscribe(res => {
       this.competitions = res.competitions;
-      console.log(this.competitions)
     });
   }
 
